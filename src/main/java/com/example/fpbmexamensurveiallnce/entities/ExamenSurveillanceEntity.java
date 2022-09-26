@@ -22,7 +22,7 @@ public class ExamenSurveillanceEntity {
     private String presence = "Abs" ;
 
     @JsonBackReference
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinTable(
             name = "examen_surveillance_has_etudiant",
             joinColumns = @JoinColumn(name = "examen_surveillance_id"),

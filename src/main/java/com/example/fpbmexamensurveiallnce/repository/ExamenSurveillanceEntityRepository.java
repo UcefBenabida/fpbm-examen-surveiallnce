@@ -10,6 +10,6 @@ import java.util.List;
 @Repository("examenServeillanceRepository")
 public interface ExamenSurveillanceEntityRepository extends JpaRepository<ExamenSurveillanceEntity, Long> {
     ExamenSurveillanceEntity findExamenSurveillanceEntityByExamenAndEtudiant(ExamenEntity examen, EtudiantEntity etudiant);
-
     ExamenSurveillanceEntity findExamenSurveillanceEntityByToken(String token);
+    List<ExamenSurveillanceEntity> findExamenSurveillanceEntitiesByExamen(ExamenEntity examen);
 }

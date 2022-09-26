@@ -4,8 +4,6 @@ import com.example.fpbmexamensurveiallnce.entities.EtudiantEntity;
 import com.example.fpbmexamensurveiallnce.entities.ExamenEntity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.jsonschema.JsonSerializableSchema;
-import lombok.ToString;
 
 @JsonIgnoreProperties(value = {"handler", "hibernateLazyInitializer", "fieldHandler"})
 @JsonSerialize

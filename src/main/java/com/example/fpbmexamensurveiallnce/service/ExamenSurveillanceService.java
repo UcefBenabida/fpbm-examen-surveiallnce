@@ -13,5 +13,9 @@ public interface ExamenSurveillanceService {
     List<ExamenSurveillanceEntity> createExamenSurveillance(ExamenEntity examen);
     String scannePaper(String token);
     String generateUniqueToken();
+    List<ExamenSurveillanceEntity> findAllByToken(String token);
+    String findAllByTokenInJson(String token);
+    String examenSurveillanceParseJson(ExamenSurveillanceEntity examenSurveillanceEntity);
+
 
 }

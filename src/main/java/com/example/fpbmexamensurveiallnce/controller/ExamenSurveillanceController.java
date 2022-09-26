@@ -26,6 +26,11 @@ public class ExamenSurveillanceController {
     @Autowired
     ExamenEntitySeviceImpl examenEntitySevice;
 
+    @GetMapping("getallexamensurveillances")
+    String getAll(@PathVariable String token)
+    {
+        return examenSurveillanceServiceImpl.findAllByTokenInJson(token);
+    }
     @GetMapping("/getexamenetudiants")
     String getExamenEtudiants(@PathVariable String token)
     {
