@@ -11,9 +11,7 @@ public interface ExamenSurveillanceService {
     ExamenSurveillanceEntity findByExamenAndEtudiant(ExamenEntity examen, EtudiantEntity etudiant);
     ExamenSurveillanceEntity save(ExamenSurveillanceEntity examenSurveillanceEntity);
     List<ExamenSurveillanceEntity> createExamenSurveillance(ExamenEntity examen);
-
     String scannePaper(String token);
-
     String generateUniqueToken();
 
 }

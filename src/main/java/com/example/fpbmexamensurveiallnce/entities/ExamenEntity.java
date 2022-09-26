@@ -1,5 +1,7 @@
 package com.example.fpbmexamensurveiallnce.entities;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.*;
@@ -18,6 +20,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties(value = {"handler", "hibernateLazyInitializer", "fieldHandler"})
 public class ExamenEntity {
 
     @Id
@@ -28,16 +31,14 @@ public class ExamenEntity {
     private String token ;
 
     @Column(name = "date", nullable = false, columnDefinition = "varchar(11)")
-    @JsonFormat(pattern = "u-M-d")
+    @JsonFormat(pattern = "u-MM-dd")
     private LocalDate date ;
-
     @Column(name = "time", nullable = false, columnDefinition = "varchar(10)")
-    @JsonFormat(pattern = "H:m")
+    @JsonFormat(pattern = "HH:m")
     private LocalTime time;
 
-    @Column(name = "period", nullable = false, columnDefinition = "varchar(10)")
-    @JsonFormat(pattern = "H:m")
-    private LocalTime period;
+    @Column(name = "period", nullable = false)
+    private int period;
 
     @JsonManagedReference
     @ManyToOne

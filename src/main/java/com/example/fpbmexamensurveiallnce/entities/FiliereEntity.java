@@ -30,7 +30,7 @@ public class FiliereEntity implements Serializable {
     @Column(name = "code_filiere", unique = true)
     private String code_filiere ;
 
-    @JsonManagedReference
+    @JsonBackReference
     @OneToMany(cascade = CascadeType.ALL ,fetch = FetchType.EAGER)
     private List<ModuleEntity> modules;
 
@@ -41,9 +41,9 @@ public class FiliereEntity implements Serializable {
             joinColumns = @JoinColumn(name = "filiere_id"),
             inverseJoinColumns = @JoinColumn(name = "etudiant_id")
     )
-    @ToString.Exclude
     private List<EtudiantEntity> etudiants;
-    @JsonManagedReference
+
+    @JsonBackReference
     @OneToOne(fetch = FetchType.EAGER)
     @JoinTable(
             name = "filiere_has_chef_professeur",

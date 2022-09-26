@@ -1,5 +1,7 @@
 package com.example.fpbmexamensurveiallnce.entities;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,6 +13,7 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties(value = {"handler", "hibernateLazyInitializer", "fieldHandler"})
 public class ModuleEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,8 +38,8 @@ public class ModuleEntity implements Serializable {
     )
     ProfesseurEntity professeur;
 
-    @JsonBackReference
-    @ManyToOne
+    @JsonManagedReference
+    @ManyToOne(fetch = FetchType.EAGER)
     private FiliereEntity filiere;
 
     @JsonBackReference
@@ -46,7 +49,6 @@ public class ModuleEntity implements Serializable {
             joinColumns = @JoinColumn(name = "module_id"),
             inverseJoinColumns = @JoinColumn(name = "examen_id")
     )
-    @ToString.Exclude
     List<ExamenEntity> examens;
 
     @JsonBackReference

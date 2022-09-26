@@ -2,6 +2,7 @@ package com.example.fpbmexamensurveiallnce.serviceimplementation;
 import com.example.fpbmexamensurveiallnce.entities.EtudiantEntity;
 import com.example.fpbmexamensurveiallnce.entities.ExamenEntity;
 import com.example.fpbmexamensurveiallnce.entities.ExamenSurveillanceEntity;
+import com.example.fpbmexamensurveiallnce.repository.ExamenEntityRepository;
 import com.example.fpbmexamensurveiallnce.repository.ExamenSurveillanceEntityRepository;
 import com.example.fpbmexamensurveiallnce.service.ExamenSurveillanceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ public class ExamenSurveillanceServiceImpl implements ExamenSurveillanceService 
 
     @Autowired
     ExamenSurveillanceEntityRepository examenSurveillanceEntityRepository;
+    @Autowired
+    ExamenEntityRepository examenEntityRepository;
 
     @Override
     public ExamenSurveillanceEntity findByExamenAndEtudiant(ExamenEntity examen, EtudiantEntity etudiant) {
@@ -85,4 +88,6 @@ public class ExamenSurveillanceServiceImpl implements ExamenSurveillanceService 
             return token ;
         }
     }
+
+
 }

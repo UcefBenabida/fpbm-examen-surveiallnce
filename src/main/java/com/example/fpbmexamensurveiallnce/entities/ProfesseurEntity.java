@@ -63,7 +63,7 @@ public class ProfesseurEntity {
     private List<ExamenEntity> examens_survaillanced;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JsonBackReference
+    @JsonManagedReference
     @JoinTable(
             name = "filiere_has_chef_professeur",
             joinColumns = @JoinColumn(name = "professeur_id"),

@@ -12,13 +12,11 @@ public interface ExamenEntityService {
     Iterable<ExamenEntity> getAll();
     ExamenEntity findById(Long examen_id);
     String findByIdInJson(Long examen_id);
-
     List<EtudiantEntity> getExamenEtudiants(String token);
     String getExamenEtudiantsInJson(String token);
-
     void dropExamenById(Long id);
     ExamenEntity findByToken(String token) ;
-
     String generateUniqueToken();
+    String validateToken(String token);
 
 }

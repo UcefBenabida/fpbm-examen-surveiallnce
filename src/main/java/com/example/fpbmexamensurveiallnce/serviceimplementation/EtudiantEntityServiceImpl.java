@@ -124,7 +124,6 @@ public class EtudiantEntityServiceImpl  implements EtudiantEntityService   {
                     if(an_examen.getDate() == examen.getDate() && an_examen.getTime() == examen.getTime())
                     {
                         etudiantSurveillance.examen = an_examen;
-                        etudiantSurveillance.isNotTheSameExamen = true ;
                         break;
                     }
                 }

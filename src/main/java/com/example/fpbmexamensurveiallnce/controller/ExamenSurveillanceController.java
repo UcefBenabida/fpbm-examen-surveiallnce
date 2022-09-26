@@ -44,4 +44,16 @@ public class ExamenSurveillanceController {
         return examenSurveillanceServiceImpl.scannePaper(paper_token);
     }
 
+    @GetMapping("/validatetoken")
+    String validateExamenToken(@PathVariable String token)
+    {
+        return examenEntitySevice.validateToken(token);
+    }
+
+    @GetMapping("/getexamen")
+    ExamenEntity getExamenByToken(@PathVariable String token)
+    {
+        return examenEntitySevice.findByToken(token);
+    }
+
 }

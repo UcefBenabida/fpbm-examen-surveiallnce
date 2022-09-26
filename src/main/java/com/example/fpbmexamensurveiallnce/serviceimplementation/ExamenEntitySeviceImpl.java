@@ -41,9 +41,9 @@ public class ExamenEntitySeviceImpl implements ExamenEntityService {
     public ExamenEntity createExamen(String examenString) {
         JSONObject jsonObject = new JSONObject(examenString) ;
         String stringDateTime = jsonObject.getString("date") ;
-        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("u-M-d");
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("u-MM-dd");
         LocalDate date = LocalDate.parse(stringDateTime , fmt);
-        DateTimeFormatter fmttime = DateTimeFormatter.ofPattern("H:m");
+        DateTimeFormatter fmttime = DateTimeFormatter.ofPattern("HH:m");
         LocalTime time = LocalTime.parse(jsonObject.getString("time"), fmttime);
         ModuleEntity module = moduleEntityService.findById(jsonObject.getLong("module_id"));
         List<ProfesseurEntity> profs = new ArrayList<>();
@@ -57,7 +57,7 @@ public class ExamenEntitySeviceImpl implements ExamenEntityService {
             }
         }
         String token = generateUniqueToken();
-        ExamenEntity examenEntity = new ExamenEntity(null, token, date, time, localEntityRepository.findById(jsonObject.getLong("local_id")).get(),module, profs, null,null , null);
+        ExamenEntity examenEntity = new ExamenEntity(null, token, date, time, jsonObject.getInt("period"),localEntityRepository.findById(jsonObject.getLong("local_id")).get(),module, profs, null,null , null);
         ExamenEntity examen = examenEntityRepository.save(examenEntity) ;
         examenSurveillanceService.createExamenSurveillance(examen);
         return examen;
@@ -134,5 +134,18 @@ public class ExamenEntitySeviceImpl implements ExamenEntityService {
     @Override
     public void dropExamenById(Long id) {
         examenEntityRepository.deleteById(id);
+    }
+
+    @Override
+    public String validateToken(String token) {
+        ExamenEntity examen = examenEntityRepository.findExamenEntityByToken(token);
+        if(examen != null)
+        {
+            return "token is valid.";
+        }
+        else
+        {
+            return "token is not valid.";
+        }
     }
 }
