@@ -91,15 +91,14 @@ public class ExamenSurveillanceServiceImpl implements ExamenSurveillanceService 
 
     @Override
     public List<ExamenSurveillanceEntity> findAllByToken(String token) {
-        return examenSurveillanceEntityRepository.findExamenSurveillanceEntitiesByExamen(examenEntityRepository.findExamenEntityByToken(token));
+        return examenSurveillanceEntityRepository.findExamenSurveillanceEntitiesByExamenOrderByPresenceAsc(examenEntityRepository.findExamenEntityByToken(token));
     }
-
 
     @Override
     public String findAllByTokenInJson(String token) {
         String json = "[ ";
         boolean test  =false;
-        List<ExamenSurveillanceEntity> examenServs = examenSurveillanceEntityRepository.findExamenSurveillanceEntitiesByExamen(examenEntityRepository.findExamenEntityByToken(token)) ;
+        List<ExamenSurveillanceEntity> examenServs = examenSurveillanceEntityRepository.findExamenSurveillanceEntitiesByExamenOrderByPresenceAsc(examenEntityRepository.findExamenEntityByToken(token)) ;
         for (ExamenSurveillanceEntity examenSurveillanceEntity : examenServs)
         {
             if(test)
@@ -118,7 +117,7 @@ public class ExamenSurveillanceServiceImpl implements ExamenSurveillanceService 
 
     @Override
     public String examenSurveillanceParseJson(ExamenSurveillanceEntity examenSurveillanceEntity) {
-        return "{ \"id\": " + examenSurveillanceEntity.getId() + " , \"presence\":\"" + examenSurveillanceEntity.getPresence() + "\" , \"etudiant\": { \"id\": " + examenSurveillanceEntity.getEtudiant().getId() + ", \"first_name\": \"" + examenSurveillanceEntity.getEtudiant().getFirst_name() + "\" , \"last_name\": \"" + examenSurveillanceEntity.getEtudiant().getLast_name() + "\", \"birth_date\": \"" + examenSurveillanceEntity.getEtudiant().getBirth_date() + "\", \"image\": \"" + examenSurveillanceEntity.getEtudiant().getImage() + "\" , \"cne\": \"" + examenSurveillanceEntity.getEtudiant().getCne() + "\" , \"cin\": \"" + examenSurveillanceEntity.getEtudiant().getCin() + "\" , \"address\": \"" + examenSurveillanceEntity.getEtudiant().getAddress() + "\" , \"code_appoge\": \"" + examenSurveillanceEntity.getEtudiant().getCodeAppoge() + "\" , \"phone\": \"" + examenSurveillanceEntity.getEtudiant().getPhone() + "\" , \"email\": \"" + examenSurveillanceEntity.getEtudiant().getEmail() + "\" } }" ;
+        return "{ \"id\": " + examenSurveillanceEntity.getId() + " , \"presence\":\"" + examenSurveillanceEntity.getPresence() + "\" , \"isPaperScanned\": " + examenSurveillanceEntity.isPaperScanned() + " , \"etudiant\": { \"id\": " + examenSurveillanceEntity.getEtudiant().getId() + ", \"first_name\": \"" + examenSurveillanceEntity.getEtudiant().getFirst_name() + "\" , \"last_name\": \"" + examenSurveillanceEntity.getEtudiant().getLast_name() + "\", \"birth_date\": \"" + examenSurveillanceEntity.getEtudiant().getBirth_date() + "\", \"image\": \"" + examenSurveillanceEntity.getEtudiant().getImage() + "\" , \"cne\": \"" + examenSurveillanceEntity.getEtudiant().getCne() + "\" , \"cin\": \"" + examenSurveillanceEntity.getEtudiant().getCin() + "\" , \"address\": \"" + examenSurveillanceEntity.getEtudiant().getAddress() + "\" , \"code_appoge\": \"" + examenSurveillanceEntity.getEtudiant().getCodeAppoge() + "\" , \"phone\": \"" + examenSurveillanceEntity.getEtudiant().getPhone() + "\" , \"email\": \"" + examenSurveillanceEntity.getEtudiant().getEmail() + "\" } }" ;
     }
 
 
